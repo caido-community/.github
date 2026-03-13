@@ -1,0 +1,16 @@
+name: Add Issues to Project
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  add-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add org issues to Project #2
+        env:
+          GH_TOKEN: ${{ secrets.ORG_PROJECT_AUTOMATION_PAT }}
+        run: ./scripts/add-issues-to-project.sh
